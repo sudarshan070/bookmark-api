@@ -17,5 +17,14 @@ router.post('/create', async (req, res, next) => {
     }
 })
 
+// delete tag
+router.delete('/delete/:id', async (req, res, next) => {
+    try {
+        var deleteTag = await Tags.findByIdAndDelete(req.params.id)
+        res.status(201).json({ success: "Delete tag" })
+    } catch (error) {
+        next(error)
+    }
+})
 
 module.exports = router
