@@ -1,5 +1,5 @@
-var mongoose = require(mongoose)
-var slug = require(slug)
+var mongoose = require('mongoose')
+var slug = require("slug")
 var Schema = mongoose.Schema
 
 var bookmarkSchema = new Schema({
@@ -17,9 +17,12 @@ var bookmarkSchema = new Schema({
         required: true
     },
     tags: [{
-        type: Schema.Types.objectId,
+        type: Schema.Types.ObjectId,
         ref: "Tags"
-    }]
+    }],
+    slug: {
+        type: String
+    }
 
 }, { timestamps: true })
 

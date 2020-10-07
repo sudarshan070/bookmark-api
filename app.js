@@ -16,7 +16,9 @@ mongoose.connect(clusterMongoDb,
 )
 
 
-var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
+const bookmarkRouter = require('./routes/bookmark');
+const tagsRouter = require('./routes/tags')
 
 
 var app = express();
@@ -28,6 +30,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/api/bookmark', bookmarkRouter)
+app.use('/api/tags', tagsRouter)
 
 
 module.exports = app;
