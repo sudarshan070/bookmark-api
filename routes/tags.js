@@ -27,6 +27,16 @@ router.delete('/delete/:id', async (req, res, next) => {
     }
 })
 
+// get all tag
+router.get("/", async (req, res, next) => {
+    try {
+        var tags = await Tags.find({})
+        res.status(201).json({ tags })
+    } catch (error) {
+        next(error)
+    }
+})
+
 // add tag to bookmark
 router.post('/:slug/:id', async (req, res, next) => {
     try {
