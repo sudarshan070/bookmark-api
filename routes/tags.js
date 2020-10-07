@@ -45,4 +45,20 @@ router.post('/:slug/:id', async (req, res, next) => {
 })
 
 
+// remove tag from bookmark
+router.delete("/:slug/:id", async (req, res, next) => {
+    try {
+        var slug = req.params.slug
+        var bookmark = await Bookmark.findOne({ slug })
+        var tag = await Tags.findById(req.params.id)
+        bookmark = await Bookmark.findByIdAndUpdate(
+            bookmark.id,
+            { $pull: { tags: tag.id } },
+            { new: true }
+        )
+        res.status(201).json({ bookmark })
+    } catch (error) {
+        error(next)
+    }
+})
 module.exports = router
