@@ -23,5 +23,17 @@ router.post('/create', async (req, res, next) => {
     }
 })
 
+// delete bookmark
+router.delete('/delete/:slug', async (req, res, next) => {
+    try {
+        var deleteBookmark = await Bookmark.findOneAndDelete({
+            slug: req.params.slug,
+        });
+        res.json({ success: "remove from bookmark" });
+    } catch (error) {
+        next(error);
+    }
+})
+
 
 module.exports = router
