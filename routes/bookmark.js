@@ -35,5 +35,14 @@ router.delete('/delete/:slug', async (req, res, next) => {
     }
 })
 
+router.get('/', async (req, res, next) => {
+    try {
+        var bookmarks = await Bookmark.find({})
+        res.status(201).json({ bookmarks })
+    } catch (error) {
+        next(error)
+    }
+})
+
 
 module.exports = router
