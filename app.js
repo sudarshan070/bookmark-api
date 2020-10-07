@@ -6,7 +6,7 @@ var mongoose = require('mongoose')
 
 
 
-const clusterMongoDb = "mongodb+srv://testuser:testShinde@cluster0.shr0h.mongodb.net/bookmark-api?retryWrites=true&w=majority"
+const clusterMongoDb = "mongodb://localhost:27017/bookmark-api"
 
 mongoose.connect(clusterMongoDb,
     { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
@@ -17,7 +17,7 @@ mongoose.connect(clusterMongoDb,
 
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+
 
 var app = express();
 
@@ -28,6 +28,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
 
 module.exports = app;
